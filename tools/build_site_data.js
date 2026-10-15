@@ -12,8 +12,8 @@ const chapters = [
   { id: 3, title: 'Consumer Motivation and Personality', exam: 'midterm' },
   { id: 4, title: 'Consumer Perception and Positioning', exam: 'midterm' },
   { id: 5, title: 'Consumer Learning', exam: 'midterm' },
-  { id: 14, title: 'Consumer Decision-Making and Diffusion of Innovations', exam: 'midterm' },
   { id: 6, title: 'Consumer Attitude Formation and Change', exam: 'final' },
+  { id: 14, title: 'Consumer Decision-Making and Diffusion of Innovations', exam: 'final' },
 ];
 
 const DEPTH = require('./annotations/textbook.js');

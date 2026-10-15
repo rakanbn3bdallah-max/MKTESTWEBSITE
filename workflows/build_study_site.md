@@ -17,8 +17,8 @@ Group-project material (guidelines, gates, deadlines, team) never goes on the si
 | Brand art | `Brand_assest/` (Mario sprite sheet; infographic for the visual style) |
 
 ## Exam facts (from the syllabus)
-- Midterm: Wed 21 Oct 2026, in class (3:00 PM Riyadh). Chapters 1–5 + "15". "15" is the doctor's typo for **Chapter 14,
-  Consumer Decision-Making and Diffusion of Innovations** (confirmed by the user). The site shows it as Chapter 14.
+- Midterm: Wed 21 Oct 2026, in class (3:00 PM Riyadh). Chapters 1–5 only. The syllabus also lists "15" (the doctor's typo
+  for **Chapter 14, Consumer Decision-Making**), but the doctor later said Chapter 14 is not on the midterm, so it is **final only**.
 - Chapter 6 (Attitude Formation) is taught on 26 Oct, after the midterm, so it is **final only**.
 - Final: Thu 24 Dec 2026, 8:00 AM, comprehensive. It also covers Chapters 7, 9 and 11, which have no slides here yet.
 
