@@ -445,7 +445,7 @@ details.whybox summary { cursor: pointer; font-family: var(--display); font-weig
               <div class="cd-cell"><b>--</b><span>DAYS</span></div><div class="cd-cell"><b>--</b><span>HRS</span></div>
               <div class="cd-cell"><b>--</b><span>MIN</span></div><div class="cd-cell"><b>--</b><span>SEC</span></div>
             </div>
-            <p class="cd-note">Covers Chapters 1–5 and 14 (Consumer Decision-Making). The syllabus writes “15”, but the doctor means Chapter 14. Chapter 6 is taught after the midterm, so it's on the final only. Counting down to class time, Riyadh.</p>
+            <p class="cd-note">Covers Chapters 1–5. The doctor confirmed Chapter 14 (Consumer Decision-Making) is not on the midterm, and Chapter 6 is taught after it, so both are on the final only. Counting down to class time, Riyadh.</p>
             <div class="cd-final"><span>Final exam · Thu 24 Dec 2026, 8:00 AM · comprehensive</span><b id="cd-fin">–</b></div>
           </div>
         </div>
@@ -987,7 +987,7 @@ details.whybox summary { cursor: pointer; font-family: var(--display); font-weig
     $('#mode-miss-txt').textContent = m ? `${m} question${m === 1 ? '' : 's'} you missed, saved on this device.` : 'Nothing missed yet. Questions you get wrong will collect here.';
     $('#mode-miss').disabled = !m;
 
-    // staircase: midterm worlds climb to the flag, then Ch.6 toward the final
+    // staircase: midterm worlds climb to the flag, then the final-only chapters (6, 14) toward the final
     const stairs = $('#stairs'); stairs.innerHTML = '';
     const order = [...MID, 'flag', ...CH.filter(c => c.exam !== 'midterm')];
     order.forEach((c, i) => {
@@ -1008,7 +1008,7 @@ details.whybox summary { cursor: pointer; font-family: var(--display); font-weig
       const card = el('article', { class: 'world' }, `
         <div class="num" aria-hidden="true">${c.id}</div>
         <h3>${esc(c.title)}</h3>
-        <div class="meta"><span class="chip ${c.exam === 'midterm' ? 'mid' : 'fin'}">${c.exam === 'midterm' ? 'Midterm + Final' : 'Final only'}</span>${c.exam === 'midterm' ? '' : '<span>Taught after the midterm</span>'}<span>${c.slides.length} slides</span><span>${tot} questions</span></div>
+        <div class="meta"><span class="chip ${c.exam === 'midterm' ? 'mid' : 'fin'}">${c.exam === 'midterm' ? 'Midterm + Final' : 'Final only'}</span>${c.exam === 'midterm' ? '' : '<span>Not on the midterm</span>'}<span>${c.slides.length} slides</span><span>${tot} questions</span></div>
         <div class="bar" aria-hidden="true">${Array.from({ length: 20 }, (_, i) => `<i class="${i < on ? 'on' : ''}"></i>`).join('')}</div>
         <div class="barlbl">${ok} of ${tot} answered correctly</div>
         <div class="acts"><a class="btn" href="#ch${c.id}-slides">Slides</a><a class="btn" href="#ch${c.id}-book">Textbook</a><a class="btn primary" href="#ch${c.id}-quiz">Practice</a></div>`);
