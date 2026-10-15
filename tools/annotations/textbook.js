@@ -1,0 +1,66 @@
+// Questions whose tested detail goes beyond what the slide shows: the slide names the topic,
+// but the definition/example/distinction asked about is explained in depth in the textbook.
+// chapter -> { questionNumber: 'phrase used to locate the textbook page' }
+// The build looks the phrase up inside the matching book chapter (tools/textbook_lookup.js) and cites "Book Ch. X, p. N".
+module.exports = {
+  1: {
+    2: 'dispos*', 6: 'production concept', 7: 'production concept', 8: 'production concept', 9: 'production concept',
+    10: 'selling concept', 11: 'selling concept', 13: 'selling concept', 16: 'positioning', 17: 'segmentation', 18: 'positioning',
+    20: 'targeting', 21: 'segmentation', 22: 'me too', 23: 'positioning', 24: 'warrant*', 25: 'public relations', 26: 'place',
+    27: 'payment', 28: 'societal marketing concept', 30: 'societal marketing concept', 33: 'digital', 35: 'facebook',
+    38: 'compare', 39: 'twitter', 41: 'customiz*', 46: 'retention', 52: 'adaptation', 53: 'trust', 54: 'engagement',
+    57: 'mercenaries', 58: 'apostles', 59: 'hostages', 61: 'profitability', 62: 'profitability', 64: 'sapphire', 65: 'retention rate',
+    74: 'profitability', 91: 'production concept', 93: 'selling concept', 95: 'marketing concept', 97: 'me too', 98: 'me too',
+    99: 'warrant*', 100: 'societal marketing concept', 103: 'interactive', 106: 'gauge', 108: 'customiz*', 111: 'fire',
+  },
+  2: {
+    3: 'positioning', 4: 'identifiable', 5: 'prizm', 6: 'quantitative', 7: 'cognitive', 8: 'consumer-intrinsic', 9: 'consumption-specific',
+    10: 'cognitive', 13: 'social class', 15: 'demographic', 16: 'millennials', 18: 'family', 19: 'income', 20: 'social class',
+    21: 'social class', 24: 'geodemographic', 28: 'vals', 30: 'believers', 31: 'achievers', 32: 'thinkers', 33: 'makers', 34: 'innovators',
+    36: 'heavy users', 42: 'heavy users', 45: 'brick', 46: 'showrooming', 51: 'geofencing', 53: 'identifiable', 67: 'media',
+    68: 'reachable', 72: 'occupation', 75: 'family life cycle', 76: 'occupation', 77: 'family life cycle', 78: 'social class', 82: 'p$ycle',
+    84: 'believers', 86: 'showrooming', 88: 'geofencing', 89: 'impression',
+  },
+  3: {
+    5: 'biogenic', 6: 'psychogenic', 8: 'generic goals', 9: 'product-specific goals', 10: 'product-specific goals', 11: 'approach object',
+    12: 'avoidance objects', 14: 'recreational', 20: 'projection', 21: 'rationalization', 24: 'safety', 26: 'social needs',
+    27: 'ego needs', 28: 'ego needs', 31: 'projective', 40: 'freud', 41: 'id', 42: 'id', 43: 'superego', 44: 'the ego', 45: 'neo-freudian',
+    46: 'adler', 47: 'detached', 48: 'detached', 49: 'compliant', 50: 'innovativeness', 55: 'materialism', 56: 'compulsions and',
+    57: 'compulsive', 58: 'ethnocentrism', 60: 'optimum stimulation', 61: 'ethnocentrism', 62: 'brand personality', 65: 'actual self-image',
+    66: 'ideal social self-image', 67: 'extended self', 68: 'self-altering', 69: 'actual self-image', 70: 'ideal self-image',
+    71: 'social self-image', 72: 'ideal social self-image', 75: 'novelty seeking', 79: 'approach object', 84: 'projection', 87: 'product-specific',
+    89: 'maslow', 96: 'superego', 97: 'compliant', 99: 'dogmatism', 100: 'optimum stimulation', 102: 'need for cognition',
+    103: 'compulsive', 106: 'avoidance',
+  },
+  4: {
+    7: 'sensitivity', 14: 'ambush', 18: 'logo', 32: 'figure and ground', 36: 'ambiguous', 40: 'consumer imagery', 94: 'jnd',
+    101: 'absolut', 102: 'closure',
+  },
+  5: {
+    3: 'motives', 5: 'motivation', 6: 'cues', 7: 'cues', 8: 'response', 9: 'reinforcement', 10: 'reinforcement',
+    11: 'behavioral', 12: 'behavioral learning', 13: 'behavioral learning', 16: 'unconditioned stimulus', 17: 'conditioned response',
+    20: 'wear-out', 21: 'wear-out', 22: 'three-hit', 24: 'stimulus generalization', 27: 'product line extension*',
+    28: 'family branding', 31: 'licensing', 34: 'stimulus discrimination', 35: 'product form extension', 36: 'skinner',
+    37: 'positive reinforcement', 38: 'negative reinforcement', 40: 'decay', 44: 'shaping', 45: 'massed', 46: 'massed',
+    51: 'short-term store', 52: 'rehearsal', 53: 'encoding', 54: 'rehearsal', 56: 'retrieval', 61: 'hemispheric', 63: 'left hemisphere',
+    64: 'hemispheric', 65: 'aided recall', 66: 'unaided recall', 67: 'starch', 83: 'cues', 84: 'response', 85: 'wear-out',
+    86: 'wear-out', 87: 'instrumental', 88: 'punishment', 90: 'satisfaction', 91: 'variable', 92: 'variable', 93: 'shaping',
+    94: 'distributed', 95: 'distributed', 99: 'encoding', 101: 'involvement', 102: 'involvement', 104: 'unaided recall',
+  },
+  6: {
+    2: 'object', 4: 'direct experience', 6: 'direct experience', 7: 'direct experience', 8: 'need for cognition', 35: 'functional approach',
+    36: 'utilitarian function', 37: 'ego-defensive', 38: 'ego-defensive', 39: 'knowledge function', 40: 'value-expressive',
+    41: 'knowledge function', 49: 'secondary inducements', 55: 'attribution theory', 56: 'attribution theory', 57: 'self-perception',
+    58: 'self-perception', 61: 'foot-in-the-door', 76: 'attitude', 87: 'information', 88: 'ego-defensive', 90: 'knowledge function',
+    93: 'central route', 95: 'dissonance', 97: 'self-perception', 99: 'door-in-the-face',
+  },
+  14: {
+    20: 'psychological field', 21: 'sociocultural', 26: 'actual state', 27: 'desired state', 28: 'actual state', 30: 'memory',
+    31: 'past experience', 32: 'past experience', 33: 'risk', 41: 'evoked set', 42: 'evoked set', 43: 'inept set', 44: 'inert set', 45: 'inert set',
+    47: 'compensatory', 56: 'opportunistic', 58: 'trial', 59: 'repeat purchase', 60: 'negative disconfirmation', 64: 'intercategory',
+    65: 'intrapersonal', 66: 'intergroup', 67: 'intragroup', 69: 'continuous innovation', 70: 'dynamically continuous',
+    71: 'relative advantage', 72: 'relative advantage', 73: 'relative advantage', 83: 'actual state', 89: 'inept set', 90: 'inert set',
+    91: 'evoked set', 96: 'disconfirmation', 97: 'intercategory', 100: 'intrapersonal', 103: 'discontinuous', 105: 'observability',
+    106: 'rejection',
+  },
+};

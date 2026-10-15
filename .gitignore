@@ -1,0 +1,12 @@
+# Allow-list: only the site, its build tools and the workflow are tracked.
+# Course sources (slides, textbook PDF, test banks), backups and local agent files stay local.
+/*
+!/.gitignore
+!/README.md
+!/site/
+!/tools/
+!/workflows/
+.tmp/
+node_modules/
+.vercel/
+.env*
