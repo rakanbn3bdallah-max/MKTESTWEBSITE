@@ -9,5 +9,5 @@ and the in-scope test-bank questions with slide-first explanations.
 
 ## Deploy (Vercel)
 
-Import this repo on vercel.com and set **Root Directory = `site`** (Framework preset: Other, no build command).
+Import this repo on vercel.com and leave **Root Directory empty**: the root `vercel.json` serves `site/`, and `api/` forwards to `site/api/`.
 Accounts need an Upstash Redis store connected to the project; details in `site/README.md`.

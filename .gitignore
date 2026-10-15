@@ -4,6 +4,8 @@
 !/.gitignore
 !/README.md
 !/site/
+!/api/
+!/vercel.json
 !/tools/
 !/workflows/
 .tmp/
