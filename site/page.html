@@ -440,12 +440,12 @@ details.whybox summary { cursor: pointer; font-family: var(--display); font-weig
             </div>
           </div>
           <div class="countdown" aria-live="off">
-            <div class="cd-head"><h2>Midterm</h2><span class="chip mid">Wed 21 Oct · 3:00 PM</span></div>
+            <div class="cd-head"><h2>Midterm</h2><span class="chip mid">Mon 26 Oct · 12:00–1:00 PM</span></div>
             <div class="cd-digits" id="cd-mid">
               <div class="cd-cell"><b>--</b><span>DAYS</span></div><div class="cd-cell"><b>--</b><span>HRS</span></div>
               <div class="cd-cell"><b>--</b><span>MIN</span></div><div class="cd-cell"><b>--</b><span>SEC</span></div>
             </div>
-            <p class="cd-note">Covers Chapters 1–5. The doctor confirmed Chapter 14 (Consumer Decision-Making) is not on the midterm, and Chapter 6 is taught after it, so both are on the final only. Counting down to class time, Riyadh.</p>
+            <p class="cd-note">Covers Chapters 1–5. The doctor confirmed Chapter 14 (Consumer Decision-Making) is not on the midterm, and Chapter 6 is taught after it, so both are on the final only. Counting down to 12:00 PM, Riyadh.</p>
             <div class="cd-final"><span>Final exam · Thu 24 Dec 2026, 8:00 AM · comprehensive</span><b id="cd-fin">–</b></div>
           </div>
         </div>
@@ -959,8 +959,8 @@ details.whybox summary { cursor: pointer; font-family: var(--display); font-weig
   $('#logo-sprite').innerHTML = sprite('stand', 30);
 
   /* ---------- countdown ---------- */
-  // syllabus: midterm in class Wed 21 Oct (class starts 3 PM); comprehensive final Thu 24 Dec at 8 AM (Riyadh)
-  const MID_AT = new Date('2026-10-21T15:00:00+03:00').getTime();
+  // midterm rescheduled to Mon 26 Oct, 12:00–1:00 PM; comprehensive final Thu 24 Dec at 8 AM (Riyadh)
+  const MID_AT = new Date('2026-10-26T12:00:00+03:00').getTime();
   const FIN_AT = new Date('2026-12-24T08:00:00+03:00').getTime();
   const pad = n => String(n).padStart(2, '0');
   function tick() {
