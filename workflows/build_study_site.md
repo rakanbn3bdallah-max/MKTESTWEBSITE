@@ -66,9 +66,9 @@ Group-project material (guidelines, gates, deadlines, team) never goes on the si
   It has **no test bank**, so the build ships it with slides + textbook only and the page hides its Practice button.
   Most slides are pictures, so titles/text are hand-typed in `tools/slide_text/ch9.json` (the build prefers that file over the export).
   Slide 9 has an empty table over the DBI chart: LibreOffice draws it opaque (PowerPoint does not), so it was removed before rendering.
-  The textbook PDF was not available in the cloud session (the project holds the book as text only), so `site/book/ch9/` pages are
-  **text renders** of each printed page (figures not shown, noted on each page). Run `render_book_chapters.ps1` on the PC to replace
-  them with real page scans, then rebuild.
+  `site/book/ch9/` holds real page scans (PDF pages 197-268, rendered at 960 px wide, JPEG quality 50, same as the other chapters).
+- **Adding a world changes the staircase.** The home staircase now sets one grid column per world in JS, and the "N worlds" lede is
+  counted from the data. Check the home page at desktop and phone width after adding any chapter.
 - **No Python on this machine.** agent-instructions.md asks for Python tools; they are Node.js and PowerShell instead.
   Check `python`/`py` again before assuming it is available.
 - **PowerShell variables are case-insensitive.** `$h` overwrites `$H` and `$w` overwrites `$W`. This broke the slide stitching once.

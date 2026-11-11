@@ -441,7 +441,7 @@ details.whybox summary { cursor: pointer; font-family: var(--display); font-weig
           <div>
             <p class="eyebrow slash">MKT301 Consumer Behavior · KSU · Fall 2026</p>
             <h1>Let's-a study<span class="bang">!</span></h1>
-            <p class="lede">Seven worlds, <strong id="lede-slides">248 slides</strong> and <strong id="lede-qs">581 test-bank questions</strong>, each kept only if the doctor's slides cover it. Miss one and you get the explanation from the slides first, then the textbook, with a button that opens the exact slide.</p>
+            <p class="lede"><span id="lede-worlds">Eight worlds</span>, <strong id="lede-slides">248 slides</strong> and <strong id="lede-qs">581 test-bank questions</strong>, each kept only if the doctor's slides cover it. Miss one and you get the explanation from the slides first, then the textbook, with a button that opens the exact slide.</p>
             <div class="hero-actions">
               <button class="btn primary" type="button" data-go="quiz-midterm">Start Midterm Mix</button>
               <a class="btn" href="#library">Open the Library</a>
@@ -481,7 +481,7 @@ details.whybox summary { cursor: pointer; font-family: var(--display); font-weig
           <button class="mode" type="button" data-go="quiz-final">
             <span class="chip fin">Final</span>
             <h3>Final Mix</h3>
-            <p id="mode-fin-txt">Every chapter with practice questions, including Attitude Formation.</p>
+            <p id="mode-fin-txt">All chapters here, including Attitude Formation.</p>
             <span class="go">PRESS START ▶</span>
           </button>
           <button class="mode" type="button" data-go="quiz-misses" id="mode-miss">
@@ -987,10 +987,11 @@ details.whybox summary { cursor: pointer; font-family: var(--display); font-weig
   const correctIn = c => c.questions.filter(q => progress[q.id] === 1).length;
   function renderHome() {
     $('#hud-coins').textContent = coins();
+    $('#lede-worlds').textContent = (['Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten'][CH.length] || CH.length) + ' worlds';
     $('#lede-slides').textContent = CH.reduce((n, c) => n + c.slides.length, 0) + ' slides';
     $('#lede-qs').textContent = allQ.length + ' test-bank questions';
     $('#mode-mid-txt').textContent = `${MID.reduce((n, c) => n + c.questions.length, 0)} questions from Chapters ${MID.map(c => c.id).join(', ')}.`;
-    $('#mode-fin-txt').textContent = `${allQ.length} questions from every chapter with a test bank, including Ch. 6. Ch. 9 has slides and textbook pages only (no test bank yet). The final also covers Chapters 7 and 11, which aren't on this site yet.`;
+    $('#mode-fin-txt').textContent = `${allQ.length} questions across the chapters here, including Ch. 6. The final also covers Chapters 7 and 11, which aren't on this site yet.`;
     const m = misses().length;
     $('#mode-miss-txt').textContent = m ? `${m} question${m === 1 ? '' : 's'} you missed, saved on this device.` : 'Nothing missed yet. Questions you get wrong will collect here.';
     $('#mode-miss').disabled = !m;
@@ -998,6 +999,7 @@ details.whybox summary { cursor: pointer; font-family: var(--display); font-weig
     // staircase: midterm worlds climb to the flag, then the final-only chapters (6, 14) toward the final
     const stairs = $('#stairs'); stairs.innerHTML = '';
     const order = [...MID, 'flag', ...CH.filter(c => c.exam !== 'midterm')];
+    stairs.style.gridTemplateColumns = `repeat(${order.length}, minmax(0, 1fr))`; // one column per world, so adding a chapter never wraps the staircase
     order.forEach((c, i) => {
       if (c === 'flag') { stairs.append(el('div', { class: 'flagcol', 'aria-hidden': 'true' }, '<span class="flag"></span>')); return; }
       const pct = c.questions.length ? Math.round(100 * correctIn(c) / c.questions.length) : 0;
@@ -1018,8 +1020,8 @@ details.whybox summary { cursor: pointer; font-family: var(--display); font-weig
         <h3>${esc(c.title)}</h3>
         <div class="meta"><span class="chip ${c.exam === 'midterm' ? 'mid' : 'fin'}">${c.exam === 'midterm' ? 'Midterm + Final' : 'Final only'}</span>${c.exam === 'midterm' ? '' : '<span>Not on the midterm</span>'}<span>${c.slides.length} slides</span><span>${tot} questions</span></div>
         <div class="bar" aria-hidden="true">${Array.from({ length: 20 }, (_, i) => `<i class="${i < on ? 'on' : ''}"></i>`).join('')}</div>
-        <div class="barlbl">${tot ? `${ok} of ${tot} answered correctly` : 'No practice questions yet (no test bank for this chapter)'}</div>
-        <div class="acts"><a class="btn" href="#ch${c.id}-slides">Slides</a><a class="btn" href="#ch${c.id}-book">Textbook</a>${tot ? `<a class="btn primary" href="#ch${c.id}-quiz">Practice</a>` : ''}</div>`);
+        <div class="barlbl">${tot ? `${ok} of ${tot} answered correctly` : 'Slides and textbook only'}</div>
+        <div class="acts"><a class="btn" href="#ch${c.id}-slides">Slides</a><a class="btn" href="#ch${c.id}-book">Textbook</a>${tot ? `<a class="btn primary" href="#ch${c.id}-quiz">Practice</a>` : '<span class="btn primary" aria-disabled="true" style="opacity:.45;cursor:default">Practice soon</span>'}</div>`);
       list.append(card);
     }
 
@@ -1303,7 +1305,7 @@ details.whybox summary { cursor: pointer; font-family: var(--display); font-weig
     let m;
     if ((m = key.match(/^ch(\d+)-quiz$/))) { const c = chById(m[1]); return { title: c.title, sub: `World ${c.id} · Practice`, qs: c.questions }; }
     if (key === 'quiz-midterm') return { title: 'Midterm Mix', sub: `Chapters ${MID.map(c => c.id).join(', ')}`, qs: MID.flatMap(c => c.questions) };
-    if (key === 'quiz-final') return { title: 'Final Mix', sub: 'All chapters with practice questions', qs: allQ };
+    if (key === 'quiz-final') return { title: 'Final Mix', sub: 'All chapters', qs: allQ };
     return { title: 'Retry My Misses', sub: 'Questions you got wrong', qs: misses().map(id => qById[id]), fixed: true };
   }
   function startQuiz(key, keep) {
