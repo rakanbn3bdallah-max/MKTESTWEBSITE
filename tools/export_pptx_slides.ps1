@@ -6,6 +6,7 @@ $decks = @{
   "3"  = "Chapter 3 Consumer Motivation and Personality.pptx"
   "4"  = "Chapter 4 consumer perception positioning Fall 2026.pptx"
   "5"  = "CHapter 5 Consumer Learning.pptx"
+  "9"  = "CB_Chapter_9_Communication_2024.pptx"
   "14" = "Chapter 14 Consumer Decision-Making and Diffusion of Innovations.pptx"
 }
 $pp = New-Object -ComObject PowerPoint.Application

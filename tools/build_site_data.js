@@ -13,6 +13,7 @@ const chapters = [
   { id: 4, title: 'Consumer Perception and Positioning', exam: 'midterm' },
   { id: 5, title: 'Consumer Learning', exam: 'midterm' },
   { id: 6, title: 'Consumer Attitude Formation and Change', exam: 'final' },
+  { id: 9, title: 'Communication and Persuading Consumer', exam: 'final' },
   { id: 14, title: 'Consumer Decision-Making and Diffusion of Innovations', exam: 'final' },
 ];
 
@@ -65,8 +66,13 @@ let problems = 0, total = 0;
 for (const ch of chapters) {
   const dir = path.join(root, 'site', 'slides', 'ch' + ch.id);
   const files = fs.readdirSync(dir).filter(f => f.endsWith('.jpg')).sort();
-  const texts = readJson(path.join(tmp, `ch${ch.id}-slides.json`));
+  // Hand-typed titles/text (tools/slide_text/chN.json, [{title, text}] per slide) win over the PowerPoint export,
+  // for decks whose slides are mostly pictures (Chapter 9).
+  const curatedFile = path.join(__dirname, 'slide_text', `ch${ch.id}.json`);
+  const curated = fs.existsSync(curatedFile) ? readJson(curatedFile) : null;
+  const texts = curated ? [] : readJson(path.join(tmp, `ch${ch.id}-slides.json`));
   ch.slides = files.map((f, i) => {
+    if (curated && curated[i]) return { img: `slides/ch${ch.id}/${f}`, title: curated[i].title, text: curated[i].text };
     const raw = String((texts.find(x => x.n === i + 1) || {}).text || '');
     const t = clean(raw);
     let title = ch.id === 6 ? (CH6_TITLES[i] || '')
@@ -75,9 +81,12 @@ for (const ch of chapters) {
     title = title.replace(/^\d{1,2}\s+(?=[A-Z])/, '').slice(0, 80);
     return { img: `slides/ch${ch.id}/${f}`, title: title || `Slide ${i + 1}`, text: t };
   });
-  const bank = readJson(path.join(tmp, `tb-${ch.id}.json`));
-  const ann = require(path.join(__dirname, 'annotations', `ch${ch.id}.js`));
   ch.questions = [];
+  // Chapters without a test bank yet (Chapter 9) ship slides + textbook only.
+  const bankFile = path.join(tmp, `tb-${ch.id}.json`), annFile = path.join(__dirname, 'annotations', `ch${ch.id}.js`);
+  if (!fs.existsSync(bankFile) || !fs.existsSync(annFile)) { console.log(`Ch ${ch.id}: ${ch.slides.length} slides, no test bank`); continue; }
+  const bank = readJson(bankFile);
+  const ann = require(annFile);
   for (const [n, a] of Object.entries(ann)) {
     const q = bank.find(x => x.n === +n);
     if (!q) { console.error(`ch${ch.id} q${n}: not in bank`); problems++; continue; }

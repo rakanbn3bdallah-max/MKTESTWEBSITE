@@ -7,9 +7,12 @@ const path = require('path');
 const RAW = path.resolve(__dirname, '..', '.tmp', 'tb-raw.txt'); // pdftotext of TEXTBOOK/MKT301-TEXTBOOK.PDF.pdf
 const OFFSET = 31;
 // PDF page ranges [first, last] per book chapter (chapter opener page to the page before the next chapter)
-const RANGES = { 1: [33, 56], 2: [57, 78], 3: [79, 106], 4: [107, 146], 5: [147, 172], 6: [173, 196], 14: [375, 392] };
+const RANGES = { 1: [33, 56], 2: [57, 78], 3: [79, 106], 4: [107, 146], 5: [147, 172], 6: [173, 196], 9: [197, 268], 14: [375, 392] };
+// Slide Chapter 9 (Communication and Persuading Consumer) matches the book's Part III, Communication and Consumer Behavior:
+// book chapters 7 (Persuading Consumers), 8 (media) and 9 (reference groups, opinion leaders, word-of-mouth), pages 166-237.
 const TITLES = { 1: 'Consumer Behavior and Technology', 2: 'Market Segmentation and Real-Time Bidding', 3: 'Consumer Motivation and Personality',
-  4: 'Consumer Perception and Positioning', 5: 'Consumer Learning', 6: 'Consumer Attitude Formation and Change', 14: 'Consumer Decision-Making and Diffusion of Innovations' };
+  4: 'Consumer Perception and Positioning', 5: 'Consumer Learning', 6: 'Consumer Attitude Formation and Change',
+  9: 'Communication and Consumer Behavior (Persuading Consumers; Print, Broadcast, Social and Mobile Media; Reference Groups, Opinion Leaders and Word-of-Mouth)', 14: 'Consumer Decision-Making and Diffusion of Innovations' };
 
 let pages;
 const norm = s => s.toLowerCase().replace(/[’‘]/g, "'").replace(/[“”]/g, '"').replace(/-\s*\n\s*/g, '').replace(/\s+/g, ' ');

@@ -13,7 +13,7 @@ function AwaitAction($op) { $asTaskAction.Invoke($null, @($op)).Wait() }
 
 # PDF page ranges per book chapter (chapter opener to the page before the next chapter)
 # string keys: an [ordered] dictionary indexed with an int returns the entry at that POSITION, not the key
-$ranges = [ordered]@{ "1" = @(33, 56); "2" = @(57, 78); "3" = @(79, 106); "4" = @(107, 146); "5" = @(147, 172); "6" = @(173, 196); "14" = @(375, 392) }
+$ranges = [ordered]@{ "1" = @(33, 56); "2" = @(57, 78); "3" = @(79, 106); "4" = @(107, 146); "5" = @(147, 172); "6" = @(173, 196); "9" = @(197, 268); "14" = @(375, 392) }
 $offset = 31
 $pdf = Join-Path $Root "TEXTBOOK\MKT301-TEXTBOOK.PDF.pdf"
 $file = Await ([Windows.Storage.StorageFile]::GetFileFromPathAsync($pdf)) ([Windows.Storage.StorageFile])

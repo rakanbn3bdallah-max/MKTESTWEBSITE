@@ -20,7 +20,8 @@ Group-project material (guidelines, gates, deadlines, team) never goes on the si
 - Midterm: Mon 26 Oct 2026, 12:00–1:00 PM Riyadh (rescheduled from Wed 21 Oct). Chapters 1–5 only. The syllabus also lists "15" (the doctor's typo
   for **Chapter 14, Consumer Decision-Making**), but the doctor later said Chapter 14 is not on the midterm, so it is **final only**.
 - Chapter 6 (Attitude Formation) is taught on 26 Oct, after the midterm, so it is **final only**.
-- Final: Thu 24 Dec 2026, 8:00 AM, comprehensive. It also covers Chapters 7, 9 and 11, which have no slides here yet.
+- Final: Thu 24 Dec 2026, 8:00 AM, comprehensive. It also covers Chapters 7, 9 and 11. Chapter 9 (Communication and Persuading Consumer)
+  is on the site (slides + textbook, no test bank yet); 7 and 11 have no slides here yet.
 
 ## Steps (tools in run order)
 1. **Export slides** (PowerPoint must be installed):
@@ -60,6 +61,14 @@ Group-project material (guidelines, gates, deadlines, team) never goes on the si
 - Viewer progress: browser storage, plus `data/users/<id>/progress` in the artifact database when the viewer can sync.
 
 ## Edge cases and lessons learned
+- **Chapter 9 (Communication and Persuading Consumer, `CB_Chapter_9_Communication_2024.pptx`)** matches the book's Part III by title:
+  book chapters 7 Persuading Consumers, 8 media and 9 reference groups / opinion leaders / word-of-mouth, pages 166-237 (PDF 197-268).
+  It has **no test bank**, so the build ships it with slides + textbook only and the page hides its Practice button.
+  Most slides are pictures, so titles/text are hand-typed in `tools/slide_text/ch9.json` (the build prefers that file over the export).
+  Slide 9 has an empty table over the DBI chart: LibreOffice draws it opaque (PowerPoint does not), so it was removed before rendering.
+  The textbook PDF was not available in the cloud session (the project holds the book as text only), so `site/book/ch9/` pages are
+  **text renders** of each printed page (figures not shown, noted on each page). Run `render_book_chapters.ps1` on the PC to replace
+  them with real page scans, then rebuild.
 - **No Python on this machine.** agent-instructions.md asks for Python tools; they are Node.js and PowerShell instead.
   Check `python`/`py` again before assuming it is available.
 - **PowerShell variables are case-insensitive.** `$h` overwrites `$H` and `$w` overwrites `$W`. This broke the slide stitching once.
