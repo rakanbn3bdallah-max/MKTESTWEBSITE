@@ -145,6 +145,8 @@ svg.sprite .r { fill: var(--red); } svg.sprite .s { fill: var(--skin); } svg.spr
 .flag { position: absolute; bottom: 0; left: 50%; width: 6px; height: 100%; background: var(--ink); transform: translateX(-50%); }
 .flag::before { content: ""; position: absolute; top: -8px; left: -5px; width: 16px; height: 16px; border-radius: 50%; background: var(--pipe); border: 2px solid var(--edge); }
 .flag::after { content: "MIDTERM"; position: absolute; top: 18px; left: 6px; background: var(--pipe); color: #fff; font-family: var(--pixel); font-size: .5rem; padding: 6px 6px 6px 8px; clip-path: polygon(0 0, 100% 0, 88% 50%, 100% 100%, 0 100%); white-space: nowrap; }
+.flag.fin { left: 12px; }
+.flag.fin::after { content: "FINAL"; }
 .hero-mario { position: absolute; width: 44px; transform: translateX(-50%); transition: left .5s steps(6), bottom .5s steps(6); pointer-events: none; }
 .ground { height: 22px; border-top: 2px solid var(--edge);
   background-color: var(--brick); background-image: linear-gradient(var(--brick-dark) 2px, transparent 2px), linear-gradient(90deg, var(--brick-dark) 2px, transparent 2px); background-size: 100% 11px, 22px 11px; }
@@ -349,6 +351,8 @@ details.whybox summary { cursor: pointer; font-family: var(--display); font-weig
 @keyframes coinup { from { transform: translate(-50%, 0); opacity: 1; } to { transform: translate(-50%, -26px); opacity: 0; } }
 .coinpop { position: absolute; left: 50%; top: -6px; animation: coinup .7s ease-out forwards; }
 
+@media (max-width: 1100px) { .step .lbl span { font-size: .58rem; } }
+@media (max-width: 960px) { .step .lbl span { display: none; } }
 @media (max-width: 920px) {
   .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 26px; }
   .deck, .quiz { grid-template-columns: minmax(0, 1fr); }
@@ -1001,12 +1005,13 @@ details.whybox summary { cursor: pointer; font-family: var(--display); font-weig
     $('#mode-miss-txt').textContent = m ? `${m} question${m === 1 ? '' : 's'} you missed, saved on this device.` : 'Nothing missed yet. Questions you get wrong will collect here.';
     $('#mode-miss').disabled = !m;
 
-    // staircase: midterm worlds climb to the flag, then the final-only chapters (6, 14) toward the final
+    // staircase: midterm worlds climb to the midterm flag, then the final-only chapters lead to the final flag
     const stairs = $('#stairs'); stairs.innerHTML = '';
-    const order = [...MID, 'flag', ...CH.filter(c => c.exam !== 'midterm')];
-    stairs.style.gridTemplateColumns = `repeat(${order.length}, minmax(0, 1fr))`; // one column per world, so adding a chapter never wraps the staircase
+    const order = [...MID, 'flag', ...CH.filter(c => c.exam !== 'midterm'), 'flag-final'];
+    // one column per world, so adding a chapter never wraps the staircase; the last column (final flag) keeps room for its banner
+    stairs.style.gridTemplateColumns = `repeat(${order.length - 1}, minmax(0, 1fr)) minmax(64px, .8fr)`;
     order.forEach((c, i) => {
-      if (c === 'flag') { stairs.append(el('div', { class: 'flagcol', 'aria-hidden': 'true' }, '<span class="flag"></span>')); return; }
+      if (c === 'flag' || c === 'flag-final') { stairs.append(el('div', { class: 'flagcol', 'aria-hidden': 'true' }, `<span class="flag${c === 'flag-final' ? ' fin' : ''}"></span>`)); return; }
       const pct = c.questions.length ? Math.round(100 * correctIn(c) / c.questions.length) : 0;
       const hgt = c.exam === 'midterm' ? 32 + i * 11 : 60;
       const a = el('a', { class: 'step', href: `#ch${c.id}-slides`, style: `height:${hgt}%`, 'aria-label': `Chapter ${c.id}, ${c.title}, ${pct}% answered correctly` },
