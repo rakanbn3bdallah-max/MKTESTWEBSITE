@@ -113,7 +113,7 @@ svg.sprite .r { fill: var(--red); } svg.sprite .s { fill: var(--skin); } svg.spr
 
 /* ---------- hero ---------- */
 .hero { padding-block: 40px 0; overflow: hidden; }
-.hero-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 40px; align-items: end; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 40px; align-items: center; }
 .hero h1 { font-family: var(--pixel); font-weight: 400; font-size: clamp(1.6rem, 4.4vw, 3rem); line-height: 1.35; letter-spacing: 0; }
 .hero h1 .bang { color: var(--red); }
 .hero .lede { margin-top: 18px; max-width: 34rem; font-size: 1.08rem; color: var(--muted); }
@@ -129,6 +129,7 @@ svg.sprite .r { fill: var(--red); } svg.sprite .s { fill: var(--skin); } svg.spr
 .cd-final { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; border-top: 2px dashed var(--line); padding-top: 12px; font-size: .92rem; color: var(--muted); }
 .cd-final b { color: var(--ink); font-variant-numeric: tabular-nums; }
 .cd-note { font-size: .78rem; color: var(--muted); }
+.cd-col { display: grid; gap: 16px; }
 
 /* staircase */
 .stairs-wrap { margin-top: 36px; position: relative; }
@@ -447,6 +448,7 @@ details.whybox summary { cursor: pointer; font-family: var(--display); font-weig
               <a class="btn" href="#library">Open the Library</a>
             </div>
           </div>
+          <div class="cd-col">
           <div class="countdown" aria-live="off">
             <div class="cd-head"><h2>Midterm</h2><span class="chip mid">Mon 26 Oct · 12:00–1:00 PM</span></div>
             <div class="cd-digits" id="cd-mid">
@@ -455,6 +457,15 @@ details.whybox summary { cursor: pointer; font-family: var(--display); font-weig
             </div>
             <p class="cd-note">Covers Chapters 1–5. The doctor confirmed Chapter 14 (Consumer Decision-Making) is not on the midterm, and Chapter 6 is taught after it, so both are on the final only. Counting down to 12:00 PM, Riyadh.</p>
             <div class="cd-final"><span>Final exam · Thu 24 Dec 2026, 8:00 AM · comprehensive</span><b id="cd-fin">–</b></div>
+          </div>
+          <div class="countdown" aria-live="off">
+            <div class="cd-head"><h2>Final</h2><span class="chip fin">Thu 24 Dec · 8:00 AM</span></div>
+            <div class="cd-digits" id="cd-fin-digits">
+              <div class="cd-cell"><b>--</b><span>DAYS</span></div><div class="cd-cell"><b>--</b><span>HRS</span></div>
+              <div class="cd-cell"><b>--</b><span>MIN</span></div><div class="cd-cell"><b>--</b><span>SEC</span></div>
+            </div>
+            <p class="cd-note">Comprehensive: every chapter on this site, plus Chapters 7 and 11. Counting down to 8:00 AM, Riyadh.</p>
+          </div>
           </div>
         </div>
 
@@ -980,6 +991,8 @@ details.whybox summary { cursor: pointer; font-family: var(--display); font-weig
     $('#hud-time').textContent = d > 0 ? `${days}D ${pad(hrs)}H` : 'GO!';
     const fd = Math.max(0, FIN_AT - now);
     $('#cd-fin').textContent = fd > 0 ? `${Math.ceil(fd / 864e5)} days to go` : 'Exam day';
+    const fcells = document.querySelectorAll('#cd-fin-digits b');
+    [Math.floor(fd / 864e5), Math.floor(fd / 36e5) % 24, Math.floor(fd / 6e4) % 60, Math.floor(fd / 1e3) % 60].forEach((v, i) => { fcells[i].textContent = pad(v); });
   }
   tick(); setInterval(tick, 1000);
 
